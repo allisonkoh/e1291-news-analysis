@@ -131,6 +131,44 @@ ggplot(nyt_pol_features, aes(x=feature,y=frequency)) +
 #                    color=RColorBrewer::brewer.pal(8,"Dark2"))
 
 
+# de- all
+nytimes_de <- nytimes_df[grep("German",nytimes_df$text),]
+nrow(nytimes_de)
+
+nyt_de_docs <- corpus(nytimes_de$topic_tags)
+summary(nyt_de_docs)
+
+nyt_de_dfm <- dfm(nyt_de_docs,
+remove=stopwords("english"),
+stem=TRUE,remove_punct=TRUE)
+topfeatures(nyt_de_dfm,200)
+
+nyt_de_features <- textstat_frequency(nyt_de_dfm,n=50)
+nyt_de_features$feature <- with(nyt_de_features,reorder(feature,-frequency))
+
+png(file="nyt_de_features.png",width=700,height=350,res=72)
+ggplot(nyt_de_features,aes(x=feature,y=frequency)) +
+geom_point() +
+theme(axis.text.x=element_text(angle=90,hjust=1))
+dev.off()
+
+# de- political
+nytimes_depol <- nytimes_pol_df[grep("German",nytimes_pol_df$text),]
+nyt_depol_docs <- corpus(nytimes_depol$topic_tags)
+nyt_depol_dfm <- dfm(nyt_depol_docs,
+remove=stopwords("english"),
+stem=TRUE,remove_punct=TRUE)
+topfeatures(nyt_depol_dfm,200)
+
+nyt_depol_features <- textstat_frequency(nyt_depol_dfm,n=50)
+nyt_depol_features$feature <- with(nyt_depol_features,reorder(feature,-frequency))
+
+png(file="nyt_depol_features.png",width=700,height=350,res=72)
+ggplot(nyt_depol_features,aes(x=feature,y=frequency)) +
+geom_point() +
+theme(axis.text.x=element_text(angle=90,hjust=1))
+dev.off()
+
 ## ----nyt ts--------------------------------------------------------------
 # corpus for all text and metadata 
 nyt_pol_docs <- corpus(nytimes_pol_df)
