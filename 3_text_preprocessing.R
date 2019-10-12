@@ -31,3 +31,11 @@ dfm.trim <- dfm_trim(dfm.m, min_termfreq = 5, min_docfreq = 3)
 #tfidf weighting
 dfm.w <- dfm_tfidf(dfm.trim)
 
+#convert back to df
+df.w <- as.data.frame(dfm.w)
+
+df_ideo <- cbind(df.w, us_news_train$ideology)
+names(df_ideo)[8443] <- "class_ideology"
+df_ideo <- df_ideo[,2:8443]
+
+summary(glm(class_ideology ~ ., family=binomial, data=df_ideo))
