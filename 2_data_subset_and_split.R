@@ -18,6 +18,11 @@ g = sample(cut(
 
 res = split(us_news_df, g)
 
+## check split results 
 sapply(res, nrow)/nrow(us_news_df)
 addmargins(prop.table(table(g)))
+
+us_news_train <- as.data.frame(res[1])
+us_news_test <- as.data.frame(res[2])
+us_news_validation <- as.data.frame(res[3])
 
