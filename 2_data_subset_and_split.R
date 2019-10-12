@@ -27,17 +27,9 @@ us_news_train <- as.data.frame(res[1])
 us_news_test <- as.data.frame(res[2])
 us_news_validation <- as.data.frame(res[3])
 
-coltrain = colnames(us_news_train)
-coltrain = gsub("train\\.", "", coltrain)
-colnames(us_news_train) = coltrain
-
-coltest = colnames(us_news_test)
-coltest = gsub("test\\.", "", coltest)
-colnames(us_news_test) = coltest
-
-colval = colnames(us_news_validation)
-colval = gsub("validation\\.", "", colval)
-colnames(us_news_validation) = colval
+colnames(us_news_train) = gsub("train\\.", "", colnames(us_news_train))
+colnames(us_news_test) = gsub("test\\.", "", colnames(us_news_test))
+colnames(us_news_validation) = gsub("validation\\.", "", colnames(us_news_validation))
 
 ##save dfs
 save(us_news_train, file = paste0(data_dir,"us_news_train.rda"))
