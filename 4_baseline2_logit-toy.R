@@ -62,6 +62,8 @@ dfm1 <- dfm(tok1,
 dfm1.m <- dfm_select(dfm1, c("[\\d-]", "[[:punct:]]", "^.{1,3}$"), selection = "remove", 
                     valuetype="regex", verbose = TRUE)
 
+testmod_nb <- textmodel_nb(dfm.m, docvars(dfm.m, "ideology"), distribution = "multinomial")
+
 dfm_matched <- dfm_match(dfm1.m,features=featnames(dfm.m))
 actual_class <- docvars(dfm.m,"ideology")
 predicted_class <- predict(testmod_nb,newdata=dfm_matched)
