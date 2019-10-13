@@ -1,0 +1,19 @@
+bre_mueller_docs <- corpus(bre_mueller)
+knitr::opts_chunk$set(echo=FALSE)
+options(java.parameters = "-Xmx1024m")
+rm(list=ls())
+setwd("/Users/allisonwun-huikoh/Google Drive/___hertie/2019-fall/e1291-ml/e1291-group-project/news-data")
+setwd("/Users/allisonwun-huikoh/Documents/GitHub/e1291-news-analysis")
+library(knitr)
+purl("/Users/allisonwun-huikoh/Google Drive/___hertie/2019-fall/e1291-ml/e1291-group-project/allison-code/4_baseline1_chance.Rmd")
+dropchunks("4_baseline1_chance.R",c("setup","[0]","[1]","[2]","[3]"))
+knitr::dropchunks("4_baseline1_chance.R",c("setup","[0]","[1]","[2]","[3]"))
+dropchunks <- function(scriptname, what.to.drop){#
+    script <- readLines(scriptname)#
+    script <- do.call(paste, list(script, collapse = "\n") )#
+    subpattern = paste0("(", do.call(paste, list(what.to.drop, collapse="|")), ")")#
+    mainpattern <- paste('(?s)## @knitr ((?!## @knitr).)*?', subpattern, '.*?((?=## @knitr)|$)', sep="")#
+    script <- gsub(pattern = mainpattern, replacement = "", x = script, perl=TRUE)#
+    writeLines(text = script, con= scriptname)#
+}
+dropchunks("4_baseline1_chance.R",c("setup","[0]","[1]","[2]","[3]"))
