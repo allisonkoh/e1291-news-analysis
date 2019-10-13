@@ -17,3 +17,6 @@ dropchunks <- function(scriptname, what.to.drop){#
     writeLines(text = script, con= scriptname)#
 }
 dropchunks("4_baseline1_chance.R",c("setup","[0]","[1]","[2]","[3]"))
+setwd("/Users/allisonwun-huikoh/Documents/GitHub/e1291-news-analysis")
+library(knitr)
+purl("/Users/allisonwun-huikoh/Google Drive/___hertie/2019-fall/e1291-ml/e1291-group-project/allison-code/4_baseline2_logit-toy.Rmd")
