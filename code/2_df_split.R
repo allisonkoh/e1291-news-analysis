@@ -1,6 +1,6 @@
 ## Outlet-specific string cleaning and data split
-
 library(tidyverse)
+library(textclean)
 
 # load dataset 
 data_dir <- "../newspaper-data/"
@@ -18,6 +18,10 @@ us_news_df$text = gsub("— CNBC's", "", us_news_df$text)
 us_news_df$text = gsub("for Breitbart News", "", us_news_df$text)
 us_news_df$text = gsub("Breitbart News Tonight", "", us_news_df$text)
 us_news_df$text = gsub("ThinkProgress", "", us_news_df$text)
+
+# cleaning contractions
+us_news_df$text = replace_contractions(us_news_df$text)
+us_news_df$description = replace_contractions(us_news_df$description)
 
 ## splitting into training, validation and test sets
 spec = c(train = .8, test = .1, validate = .1)
