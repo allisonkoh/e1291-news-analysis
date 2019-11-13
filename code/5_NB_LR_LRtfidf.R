@@ -13,6 +13,8 @@ load(paste0(data_dir, "us_news_validation.rda"))
 
 set.seed(1984) # for reproducibility 
 
+id_order = c("left", "leanleft", "center", "leanright", "right")
+
 #### Naive Bayes ---------------------------------------
 
 actual_class = us_news_test$ideology
