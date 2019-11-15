@@ -16,15 +16,15 @@ set.seed(1984)
 id_order = c("left", "leanleft", "center", "leanright", "right")
 actual_class = us_news_test$ideology
 
-x_train = us_news_train$description
+x_train = us_news_train$headline
 y_train = us_news_train$ideology
 ytrain = to.dummy(y_train, "ideology")
 
-x_val = us_news_validation$description
+x_val = us_news_validation$headline
 y_val = us_news_validation$ideology
 yval = to.dummy(y_val, "ideology")
 
-x_test = us_news_test$description
+x_test = us_news_test$headline
 y_test = us_news_test$ideology
 ytest = to.dummy(y_test, "ideology")
 
